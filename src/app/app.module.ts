@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './componentes-comunes/utils/material-module';
+import { CrearBoletoComponent } from './componentes-solicitante/crear-boleto/crear-boleto.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CrearBoletoComponent
   ],
   imports: [
     BrowserModule,
