@@ -128,7 +128,6 @@ import { MatTimepickerModule } from 'mat-timepicker';
     NgxSpinnerModule,
     MatDividerModule,
     CommonModule,
-    MatFormFieldModule,
     MatInputModule,
     MatTimepickerModule,
   ],

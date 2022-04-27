@@ -34,17 +34,17 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-             
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/sass/material-dashboard.scss",
               "src/assets/sass/styles.scss",
               "node_modules/sweetalert2/src/sweetalert2.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+               "node_modules/ngx-spinner/animations/ball-climbing-dot.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/popper.js/dist/umd/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/moment/moment.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },   
           "configurations": {
@@ -111,11 +111,10 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-             
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/sass/styles.scss",
-              "node_modules/sweetalert2/src/sweetalert2.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-spinner/animations/ball-climbing-dot.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -123,10 +122,9 @@
               ]
             },
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/popper.js/dist/umd/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/moment/moment.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           }
         }
