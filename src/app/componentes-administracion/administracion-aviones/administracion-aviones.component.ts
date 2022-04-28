@@ -52,7 +52,7 @@ export class AdministracionAvionesComponent implements OnInit {
   async obtenerAviones() {
     this.spinner.show();
     this.services.getData<any[]>(this.services.BASE_URL_AEROPUERTO, 'aviones/obtener/todos').toPromise().then(async res => {
-      this.estados = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'catalogos/codigo/padre/1').toPromise();
+      this.estados = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'catalogos/codigo/padre/aviones').toPromise();
       this.aerolineas = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'aerolinea/obtener/todas').toPromise();
       console.log(this.estados, this.aerolineas)
       console.log(res);
@@ -80,20 +80,19 @@ export class AdministracionAvionesComponent implements OnInit {
   /*
    * Metodo para guardar una aerolinea
    */
-  public guardarAerolinea() {
+  public guardarAvion() {
     this.spinner.show();
     try {
       if (!this.actualizar) {
-        const crearAerolinea: any = {
+        const crearAvion: any = {
           idAvion: this.actualizarForm.get('numeroAvion').value,
           modeloAvion: this.actualizarForm.get('modelo').value,
           anioAvion: this.actualizarForm.get('anio').value,
-          idAerolinea: this.actualizarForm.get('aerolinea').value,
-          estadoAvion: this.actualizarForm.get('estadoAvion').value
-
+          estadoAvion: this.actualizarForm.get('estadoAvion').value,
+          idAerolinea: this.actualizarForm.get('aerolinea').value
         }
-        console.log(crearAerolinea);
-        this.services.postData(this.services.BASE_URL_AEROPUERTO, 'aviones/crear', crearAerolinea).toPromise().then(res => {
+        console.log(crearAvion);
+        this.services.postData(this.services.BASE_URL_AEROPUERTO, 'aviones/crear', crearAvion).toPromise().then(res => {
           console.log(res);
           this.limpiar();
           Swal.fire({
@@ -160,7 +159,7 @@ export class AdministracionAvionesComponent implements OnInit {
   /*
   *Metodo para actulizar una aerolinea
    */
-  async actualizarAerolinea(aerolinea: any) {
+  async actualizarAvion(aerolinea: any) {
     this.aerolinea = aerolinea;
     this.actualizar = true;
     console.log(aerolinea);
@@ -172,11 +171,11 @@ export class AdministracionAvionesComponent implements OnInit {
     this.actualizarForm.get('numeroAvion').disable();
   }
 
-  eliminarAerolinea(eliminar: any) {
-    this.actualizarAerolinea(eliminar);
+  eliminarAvion(eliminar: any) {
+    this.actualizarAvion(eliminar);
     Swal.fire({
       titleText: "Confirmar Eliminación",
-      text: `¿Está seguro que desea eliminar esta aerolinea?`,
+      text: `¿Está seguro que desea eliminar este avion?`,
       icon: 'question',
       showDenyButton: true,
       confirmButtonColor: "#1369A0",
@@ -189,16 +188,15 @@ export class AdministracionAvionesComponent implements OnInit {
       if (res.isConfirmed) {
         this.spinner.show();
         try {
-          const eliminarAerolinea: any = {
-            nombreAerolinea: this.actualizarForm.get('nombreAerolinea').value,
-            telefonoAerolinea: this.actualizarForm.get('telefonoAerolinea').value,
-            correoAerolinea: this.actualizarForm.get('correoAerolinea').value,
-            direccionAerolinea: this.actualizarForm.get('direccionAerolinea').value,
-            estadoAerolinea: 43
+          const eliminarAvion: any = {
+            modeloAvion: this.actualizarForm.get('modelo').value,
+            anioAvion: this.actualizarForm.get('anio').value,
+            estadoAvion: 44,
+            idAerolinea: this.actualizarForm.get('aerolinea').value,
           }
-          console.log(eliminarAerolinea);
-          console.log(this.aerolinea.id_Aerolinea);
-          this.services.putData(this.services.BASE_URL_AEROPUERTO, `aerolineas/actualizar/${(this.aerolinea.id_Aerolinea)}`, eliminarAerolinea).toPromise().then(res => {
+          console.log(eliminarAvion);
+          console.log(this.aerolinea.id_Avion);
+          this.services.putData(this.services.BASE_URL_AEROPUERTO, `aviones/actulizar/${(this.aerolinea.id_Avion)}`, eliminarAvion).toPromise().then(res => {
             console.log(res);
             this.spinner.hide();
             this.limpiar();
@@ -212,7 +210,7 @@ export class AdministracionAvionesComponent implements OnInit {
             console.log(err);
             this.spinner.hide();
           }).finally(() => {
-            this.services.forcedNavigate(['/administracion-aerolineas']);
+            this.services.forcedNavigate(['/administracion-aviones']);
           })
         } catch (error) {
           console.log(error);

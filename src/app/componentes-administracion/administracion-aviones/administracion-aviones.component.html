@@ -65,15 +65,15 @@
                                                     aria-label="Example icon-button with a menu">more_vert</span>
 
                                                 <mat-menu #menu="matMenu">
-                                                    <button mat-menu-item title="Actualizar aerolinea" class="iconos"
+                                                    <button mat-menu-item title="Actualizar avion" class="iconos"
                                                         data-toggle="modal" data-target="#crearteAdminModal"
-                                                        (click)="actualizarAerolinea(element)">
+                                                        (click)="actualizarAvion(element)">
                                                         <mat-icon class="iconos">edit</mat-icon>
                                                         <span>Modificar Avión</span>
                                                     </button>
 
                                                     <button mat-menu-item title="Eliminar aerolinea" class="iconos"
-                                                        (click)=" eliminarAerolinea(element)">
+                                                        (click)=" eliminarAvion(element)">
                                                         <mat-icon class="iconos">delete</mat-icon>
                                                         <span>Eliminar Avión</span>
                                                     </button>
@@ -118,13 +118,13 @@
                                 <div class="col-sm-6">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Número de avión</mat-label>
-                                        <input matInput type="text" formControlName="numeroAvion">
+                                        <input matInput type="text" autocomplete="off" maxlength="10" formControlName="numeroAvion">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-6">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Modelo</mat-label>
-                                        <input matInput type="tel" maxlength="8" formControlName="modelo">
+                                        <input matInput type="text" autocomplete="off" maxlength="50" formControlName="modelo">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                 <div class="col-sm-6">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Año</mat-label>
-                                        <input matInput type="text" formControlName="anio">
+                                        <input matInput type="text" autocomplete="off" maxlength="4" formControlName="anio">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-6">
@@ -174,7 +174,7 @@
                 </button>
                 <button mat-raised-button type="button" color="primary" class="btn-container"
                     [disabled]="actualizarForm.invalid" style="margin: 7px !important;" data-dismiss="modal"
-                    (click)="guardarAerolinea()">
+                    (click)="guardarAvion()">
                     <mat-icon>save</mat-icon>
                     Guardar
                 </button>
