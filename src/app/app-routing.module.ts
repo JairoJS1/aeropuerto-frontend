@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministracionAerolineasComponent } from './componentes-administracion/administracion-aerolineas/administracion-aerolineas.component';
 import { AdministracionAvionesComponent } from './componentes-administracion/administracion-aviones/administracion-aviones.component';
+import { AdministracionEmpleadosComponent } from './componentes-administracion/administracion-empleados/administracion-empleados.component';
+import { AdministracionVuelosComponent } from './componentes-administracion/administracion-vuelos/administracion-vuelos.component';
 import { CrearBoletoComponent } from './componentes-solicitante/crear-boleto/crear-boleto.component';
 
 const routes: Routes = [
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'administracion-aviones',
     component: AdministracionAvionesComponent
+  },
+  {
+    path: 'administracion-empleados',
+    component: AdministracionEmpleadosComponent
+  },
+  {
+    path: 'administracion-vuelos',
+    component: AdministracionVuelosComponent
   }
 ];
 
