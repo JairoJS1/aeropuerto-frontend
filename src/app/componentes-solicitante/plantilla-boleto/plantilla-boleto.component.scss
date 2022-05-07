@@ -1,0 +1,181 @@
+.page {
+    max-width: 26cm;
+    min-height: 10cm;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #4892D1;
+    
+  }
+  
+  .imagen{
+    bottom: 175px;
+    width: 100px;
+    height: 130px;
+    right: 10px;
+    position: relative;
+  }
+
+  .imagenQR{
+    width: 60px;
+    height: 200px;
+    right: 85px;
+    position: relative;
+    bottom: 5px;
+  }
+
+  .borden-punteado{
+    border-right:5px dashed #C9CBC8; 
+    width:16cm;
+    height:10cm;
+    position: absolute;
+    top: -2cm;
+  }
+  
+  
+  .tabla1 {
+    top: 1.96cm;
+    position: absolute;
+    left: 2.95cm;
+    height: 8cm;
+    width: 23cm;
+    background-color: #ECEEEB;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .tabla2 {
+    position: relative;
+    width: 500px;
+    height: 50px;
+    left: 6.5cm;
+    background-color: #ECEFEF;
+}
+
+.tabla3{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 5.7cm;
+    top: -50px;
+    background-color: #4892D1;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.tabla4{
+  position: relative;
+  width: 50px;
+  height: 50px;
+  left: 19.3cm;
+  top: -100px;
+  background-color: #4892D1;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+  
+.letra {
+    font-size: 12pt;
+    font-family: Arial;
+    color: #E2FFFF;
+    font-weight: bold;
+    
+    position: relative;
+  }
+
+  .letraComun{
+    font-size: 10pt;
+    font-family: Arial;
+    color: black;
+    font-weight: bold;
+    
+    position: relative;
+  }
+
+  .letraDescComun{
+    font-size: 8pt;
+    font-family: Arial;
+    color: black;
+    
+    position: relative;
+  }
+
+  .letraBoleto{
+    font-size: 60pt;
+    font-family: Arial;
+    color: black;
+    
+    position: relative;
+  }
+
+  .letraDespedida{
+    font-size: 15pt;
+    font-family: Arial;
+    color: #5290C2;
+    
+  font-style: italic;
+  font-weight: bold;
+    position: relative;
+  }
+
+  .letraDesc{
+    font-size: 30pt;
+    font-family: Arial;
+    color: black;
+    
+    position: relative;
+  }
+  
+  .tablaDesc {
+    position: relative;
+    width: 220px;
+    height: 270px;
+    left: 15.9cm;
+    background-color: #ECEEEB;
+    top: 98px;
+}
+  
+.clase{
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: #ECEEEB;
+  color: #ECEEEB;
+  position: relative;
+}
+
+.boarding{
+  width: 120px;
+  height: 50px;
+  border: none;
+  background-color: #ECEEEB;
+  border: 1px solid black;
+}
+
+.date{
+  width: 50px;
+  height: 40px;
+  border: none;
+  background-color: #ECEEEB;
+}
+
+.desc{
+  width: 200px;
+  height: 20px;
+  border: none;
+  background-color: #ECEEEB;
+}
+
+.travel{
+  width: 150px;
+  height: 20px;
+  border: none;
+  background-color: #ECEEEB;
+}
+
+.flightDesc{
+  width: 45px;
+  height: 20px;
+  border: none;
+  background-color: #ECEEEB;
+}

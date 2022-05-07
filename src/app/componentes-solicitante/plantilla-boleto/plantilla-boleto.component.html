@@ -1,0 +1,99 @@
+<br>
+<div id="content" class="page col-sm col col-xs" style="opacity: 0.0; position: fixed;" >
+
+    <div class="tabla2">
+
+    </div>
+    <div class="tabla3">
+        <div class="letra" style="top: 14px; right: 110px; width: 150px;">
+            BOARDING PASS
+        </div>
+    </div>
+    <div class="tabla4">
+        <div class="letra" style="top: 14px; left: 18px; width: 150px;">
+            BOARDING PASS
+        </div>
+    </div>
+    <img src="../assets/img/avion.png" class="imagen">
+    <img src="../assets/img/QR.png" class="imagenQR">
+
+    <div class="tabla1 col-sm col col-xs">
+        <div class="letraComun" style="top:20px;">
+            PASSENGER NAME
+            <br>
+            <mat-label class="sinborde">{{boleto?.nombrePasajero}}</mat-label>
+        </div>
+        <div class="letraComun" style="left: 250px; bottom: 18px;">
+            FLIGHT
+            <br>
+            <mat-label class="sinborde">{{boleto?.numeroVuelo}}</mat-label>
+        </div>
+
+
+        <div class="letraBoleto" style="top: 20px;">
+            <mat-label class="sinborde">{{boleto?.numeroBoleto}}</mat-label> <img src="../assets/img/vuelo.png"
+                style="width: 180px; height: 50px;">
+            <mat-label class="sinborde">{{boleto?.numeroBoleto2}}</mat-label>
+        </div>
+
+        <div class="letraComun" style="top:50px;">
+            CLASS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BOARDING TILL
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DATE
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TIME
+        </div>
+
+        <div class="letraDesc" style="top: 50px;">
+            Y &nbsp;&nbsp;&nbsp; {{boleto?.horaAbordaje}}
+            &nbsp;&nbsp;&nbsp; <input type="text" class="clase" value="11">
+        </div>
+
+        <div class="letraComun" style="left: 328px; bottom: 5px;">
+            <input type="text" class="date" [value]="boleto?.fechaAbordaje"> &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" class="date" [value]="boleto?.horaAterrizaje">
+        </div>
+        <div class="borden-punteado col-sm col col-xs">
+            <div class="tablaDesc">
+                <div class="letraDescComun">
+                    <b>PASSENGER NAME</b>
+                    <br>
+                    <input type="text" class="desc" [value]="boleto?.nombrePasajero">
+                    <br>
+                    <b>FROM</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="travel" [value]="boleto?.origenVuelo">
+                    <br>
+                    <b>TO</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text"
+                        class="travel" [value]="boleto?.destinoVuelo">
+                    <br>
+                    <b>
+                        FLIGHT &nbsp;&nbsp;&nbsp; CLASS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        DATE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TIME</b>
+                    <br>
+                    <input type="text" class="flightDesc" [value]="boleto?.numeroVuelo"> &nbsp; <input type="text"
+                        style="text-align: center;" class="flightDesc" value="Y">
+                    &nbsp;&nbsp;
+                    <input type="text" style="text-align: center;" class="flightDesc" [value]="boleto?.fechaAbordaje"> &nbsp;
+                    <input type="text" style="text-align: center;" class="flightDesc" [value]="boleto?.horaAterrizaje">
+                    <br>
+                    <b>FLIGHT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BOARD TILL</b>
+                    <br>
+                    <input type="text" class="flightDesc" [value]="boleto?.numeroVuelo">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text"
+                        style="text-align: center;" class="flightDesc" [value]="boleto?.horaAbordaje">
+                    <br>
+                    <b> &nbsp; &nbsp; &nbsp;SEAT</b>
+                    <div class="letraDesc" style="top: 5px;">
+
+                        &nbsp; {{boleto?.numeroAsiento}}
+                    </div>
+                    <div class="letraDespedida">
+                        <br><br>
+                        HAVE A NICE TRIP!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@
   <mat-card-title>Aeropuerto </mat-card-title>
   <mat-card-actions>
     <mat-button-toggle-group name="opciones">
-      <mat-button-toggle value="ticket">Ticket</mat-button-toggle>
+      <mat-button-toggle value="ticket" [routerLink]="['/crear-boleto']">Ticket</mat-button-toggle>
       <mat-button-toggle value="vuelo" [routerLink]="['/administracion-vuelos']">Vuelos</mat-button-toggle>
       <mat-button-toggle value="aerolineas" [routerLink]="['/administracion-aerolineas']" >Aerolineas</mat-button-toggle>
       <mat-button-toggle value="aviones" [routerLink]="['/administracion-aviones']" >Aviones</mat-button-toggle>

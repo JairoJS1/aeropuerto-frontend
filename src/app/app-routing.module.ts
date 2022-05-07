@@ -5,6 +5,7 @@ import { AdministracionAvionesComponent } from './componentes-administracion/adm
 import { AdministracionEmpleadosComponent } from './componentes-administracion/administracion-empleados/administracion-empleados.component';
 import { AdministracionVuelosComponent } from './componentes-administracion/administracion-vuelos/administracion-vuelos.component';
 import { CrearBoletoComponent } from './componentes-solicitante/crear-boleto/crear-boleto.component';
+import { PlantillaBoletoComponent } from './componentes-solicitante/plantilla-boleto/plantilla-boleto.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'administracion-aviones',
     component: AdministracionAvionesComponent
+  },
+  {
+    path: 'plantilla',
+    component: PlantillaBoletoComponent
   },
   {
     path: 'administracion-empleados',
