@@ -61,4 +61,13 @@ export class ConsultaBoletoComponent implements OnInit {
   }
 
 
+  itinerario() {
+    Swal.fire({
+      titleText: `Error al descargar el itinerario, por favor intente en otro momento.`,
+      icon: 'error',
+      showCloseButton: true,
+      showConfirmButton: false
+    });
+  }
+
 }
