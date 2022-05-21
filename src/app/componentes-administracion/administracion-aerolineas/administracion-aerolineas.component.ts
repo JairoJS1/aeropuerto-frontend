@@ -18,6 +18,12 @@ export class AdministracionAerolineasComponent implements OnInit {
   aerolinea: any;
   actualizar: boolean = false;
   estados: any;
+  /* Variables para permitir ingreso de numeros en inputs*/
+  key: any;
+  teclado: any;
+  numero: any;
+  especiales: any;
+  teclado_especial: boolean;
 
   headerColumnNames: string[] = ['idAerolinea', 'nombre', 'telefono', 'correo', 'acciones'];
   dataSource = new MatTableDataSource();
@@ -230,5 +236,21 @@ export class AdministracionAerolineasComponent implements OnInit {
 
   }
 
+  /* Metodo para validar numero de telefono sea solo numeros*/
+  public numeroTelefono(e) {
+    this.key = e.keyCode || e.which;
+    this.teclado = String.fromCharCode(this.key);
+    this.especiales = '8';
+    this.numero = '0123456789';
+    this.teclado_especial = false;
 
+    for (const i in this.especiales) {
+      if (this.key === this.especiales[i]) {
+        this.teclado_especial = true;
+      }
+    }
+    if (this.numero.indexOf(this.teclado) === -1 && !this.teclado_especial) {
+      return false;
+    }
+  }
 }

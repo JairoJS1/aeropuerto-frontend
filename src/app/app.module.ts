@@ -12,6 +12,8 @@ import { AdministracionAvionesComponent } from './componentes-administracion/adm
 import { PlantillaBoletoComponent } from './componentes-solicitante/plantilla-boleto/plantilla-boleto.component';
 import { AdministracionVuelosComponent } from './componentes-administracion/administracion-vuelos/administracion-vuelos.component';
 import { AdministracionEmpleadosComponent } from './componentes-administracion/administracion-empleados/administracion-empleados.component';
+import { RevisarBoletoComponent } from './componentes-administracion/revisar-boleto/revisar-boleto.component';
+import { ConsultaBoletoComponent } from './componentes-solicitante/consulta-boleto/consulta-boleto.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { AdministracionEmpleadosComponent } from './componentes-administracion/a
     AdministracionEmpleadosComponent,
     AdministracionAvionesComponent,
     PlantillaBoletoComponent,
+    RevisarBoletoComponent,
+    ConsultaBoletoComponent,
   ],
   imports: [
     BrowserModule,

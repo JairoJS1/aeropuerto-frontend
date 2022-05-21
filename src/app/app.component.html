@@ -2,12 +2,13 @@
   <mat-card-title>Aeropuerto </mat-card-title>
   <mat-card-actions>
     <mat-button-toggle-group name="opciones">
-      <mat-button-toggle value="ticket" [routerLink]="['/crear-boleto']">Ticket</mat-button-toggle>
+      <mat-button-toggle value="ticket" [routerLink]="['/crear-boleto']">Crear Boleto</mat-button-toggle>
+      <mat-button-toggle value="ticket" [routerLink]="['/consulta-boleto']">Consulta Boleto</mat-button-toggle>
       <mat-button-toggle value="vuelo" [routerLink]="['/administracion-vuelos']">Vuelos</mat-button-toggle>
       <mat-button-toggle value="aerolineas" [routerLink]="['/administracion-aerolineas']" >Aerolineas</mat-button-toggle>
       <mat-button-toggle value="aviones" [routerLink]="['/administracion-aviones']" >Aviones</mat-button-toggle>
       <mat-button-toggle value="empleados" [routerLink]="['/administracion-empleados']">Empleados</mat-button-toggle>
-      <mat-button-toggle value="reportes">Reportes</mat-button-toggle>
+      <mat-button-toggle value="revisor" [routerLink]="['/revisar-boleto']">Revisor</mat-button-toggle>
     </mat-button-toggle-group>
   </mat-card-actions>
 </mat-card>

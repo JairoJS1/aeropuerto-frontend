@@ -192,7 +192,7 @@
                                         <mat-label>Destino</mat-label>
                                         <mat-select formControlName="destino">
                                             <mat-option *ngFor="let destino of destinos" [value]="destino.codigo">
-                                                {{ destino.nombre }}
+                                                {{ destino.nombre }} , {{ destino.descripcion }}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>

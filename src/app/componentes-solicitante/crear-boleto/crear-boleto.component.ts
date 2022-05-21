@@ -21,6 +21,7 @@ export class CrearBoletoComponent implements OnInit {
   reserva = { sesion: {}, asientos: [] };
   sesiones: any
   usuarioForm: FormGroup;
+  vueloForm: FormGroup;
   boletoForm: FormGroup;
   listDestino: any = [];
   listOrigen: any = [];
@@ -29,6 +30,8 @@ export class CrearBoletoComponent implements OnInit {
   destino: boolean = false;
   vuelo: any = [];
   crearBoleto: any;
+  asientosDisponibles: any;
+  comentarios: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('close') close;
@@ -48,23 +51,21 @@ export class CrearBoletoComponent implements OnInit {
       origenVuelo: ['', Validators.required],
       destinoVuelo: ['', Validators.required],
       numeroVuelo: ['',],
+      horaSalida: [''],
+      horaLlegada: ['']
     });
   }
 
   async ngOnInit() {
     this.listDestino = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'catalogos/codigo/padre/10').toPromise();
     this.listOrigen = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'catalogos/codigo/padre/9').toPromise();
-    console.log(this.listDestino);
-    console.log(this.listOrigen);
   }
 
   buscarUsuario(numeroPasaporte) {
     this.spinner.show();
     this.services.getData(this.services.BASE_URL_AEROPUERTO, `pasajero/obtener/${numeroPasaporte}`).toPromise().then(res => {
-      console.log(res);
       this.pasaporte = res;
       if (this.pasaporte !== null) {
-        console.log("entre")
         this.boletoForm.get("nombrePasajero").setValue(this.pasaporte.nombrePasajero);
         this.boletoForm.get("apellidoPasajero").setValue(this.pasaporte.apellidoPasajero);
       } else {
@@ -79,47 +80,16 @@ export class CrearBoletoComponent implements OnInit {
   limpiar() {
     this.usuarioForm.reset();
     this.boletoForm.reset();
+    this.services.forcedNavigate(['/crear-boleto']);
   }
 
-  seleccionar(e) {
-    console.log(e);
+  elegirVuelo(vuelo) {
+    console.log(vuelo);
+    this.boletoForm.get("numeroVuelo").setValue(vuelo.numero_vuelo);
+    this.boletoForm.get("horaSalida").setValue(vuelo.hora_salida);
+    this.boletoForm.get("horaLlegada").setValue(vuelo.hora_llegada);
+    this.getSesiones();
   }
-
-  asientoStatus(event) {
-    const group = event.path[1].id;
-    const nodeSelected = $(`#${event.path[0].id}`);
-    const value = nodeSelected[0].innerText;
-
-    this.reserva.asientos.push({ group, value });
-
-    nodeSelected.toggleClass('asientoLibre').toggleClass('asientoOcupado');
-
-
-    if (nodeSelected.hasClass('asientoOcupado')) {
-      this.usuarioForm.get("numeroAsiento").setValue(group + value);
-    }
-
-    if (nodeSelected.hasClass('asientoLibre')) {
-
-      this.reserva.asientos.forEach(element => {
-        if (element.group === group && element.value === value) {
-          this.reserva.asientos.splice(this.reserva.asientos.indexOf(element), 1);
-          if (this.reserva.asientos.length <= 1) {
-            this.reserva.asientos = [];
-            this.usuarioForm.get("numeroAsiento").setValue(null);
-          }
-        }
-
-      });
-    }
-
-
-    console.log(this.reserva.asientos);
-    console.log(group, nodeSelected, value);
-
-    console.log(this.usuarioForm.get("numeroAsiento").value);
-  }
-
 
 
   buscarVuelo() {
@@ -136,9 +106,9 @@ export class CrearBoletoComponent implements OnInit {
           showCloseButton: true,
           showConfirmButton: false
         });
+        this.boletoForm.get("origenVuelo").setValue("");
+        this.boletoForm.get("destinoVuelo").setValue("");
       } else {
-        this.boletoForm.get("numeroVuelo").setValue(this.vuelo[0].numeroVuelo);
-        console.log(this.vuelo[0].numeroVuelo);
       }
     }).catch(err => {
       console.log(err);
@@ -148,7 +118,7 @@ export class CrearBoletoComponent implements OnInit {
   }
 
 
-  enviarBoleto() {
+  async enviarBoleto() {
     this.spinner.show();
     const numeroPasaporte = this.boletoForm.get("numeroPasaporte").value;
     const nombrePasajero = this.boletoForm.get("nombrePasajero").value;
@@ -167,29 +137,31 @@ export class CrearBoletoComponent implements OnInit {
       numeroVuelo: numeroVuelo,
       asientos: asientos
     }
-
     console.log(boleto);
-
-    this.services.postData(this.services.BASE_URL_AEROPUERTO, 'boleto/crear', boleto).toPromise().then(res => {
+    this.services.postData(this.services.BASE_URL_AEROPUERTO, 'boleto/crear', boleto).toPromise().then(async res => {
       console.log(res);
       this.crearBoleto = res;
       Swal.fire({
-        titleText: `Boleto generado con exito`,
+        titleText: `Se ha creado su boleto exitosamente`,
         icon: 'success',
         showCloseButton: true,
         showConfirmButton: false
       });
-      this.generarBoleto();
-      this.limpiar();
+      await this.generarBoleto();
     }).catch(err => {
       console.log(err);
+      Swal.fire({
+        titleText: `Error al registrar datos, por favor intente en otro momento`,
+        icon: 'error',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
+      this.spinner.hide();
     }).finally(() => {
-     
+
       this.spinner.hide();
     });
   }
-
-
 
   async generarBoleto() {
     Swal.fire({
@@ -204,18 +176,16 @@ export class CrearBoletoComponent implements OnInit {
 
     this.boleto2 = await this.services.getData<Boleto>(this.services.BASE_URL_AEROPUERTO, `boleto/info/${this.crearBoleto.idBoleto}`).toPromise();
 
-
     this.boleto2.nombrePasajero = boleto.nombrePasajero + " " + boleto.apellidoPasajero;
     this.boleto2.numeroVuelo = boleto.numeroVuelo;
     this.boleto2.numeroBoleto = "N-" + this.crearBoleto.idBoleto;
     this.boleto2.numeroBoleto2 = boleto.numeroVuelo;
-    this.boleto2.horaAbordaje = moment(this.vuelo[0].horaSalida).format('HH:mm');
-    this.boleto2.fechaAbordaje = moment(this.vuelo[0].horaSalida).format('DDMMMM');
-    this.boleto2.horaAterrizaje = moment(this.vuelo[0].horaLlegada).format('HH:mm');
+    this.boleto2.horaAbordaje = moment(boleto.horaSalida).format('HH:mm');
+    this.boleto2.fechaAbordaje = moment(boleto.horaSalida).format('DDMMMM');
+    this.boleto2.horaAterrizaje = moment(boleto.horaLlegada).format('HH:mm');
     this.boleto2.origenVuelo = this.boleto2.origenVuelo;
     this.boleto2.destinoVuelo = this.boleto2.destinoVuelo;
     this.boleto2.numeroAsiento = usuario.numeroAsiento;
-
 
     setTimeout(() => {
       this.registroForm.onFinished(async () => {
@@ -232,7 +202,6 @@ export class CrearBoletoComponent implements OnInit {
           }
         })
 
-        
         Toast.fire({
           icon: "success",
           iconHtml: '<span class="mat-icon notranslate material-icons mat-icon-no-color">upload</span>',
@@ -245,4 +214,47 @@ export class CrearBoletoComponent implements OnInit {
       this.services.forcedNavigate(['/crear-boleto']);
     }, 1000)
   }
+
+  getSesiones() {
+    const boleto = this.boletoForm.value;
+    this.services.getData(this.services.BASE_URL_AEROPUERTO, `vuelo/numeroVuelo/${boleto.numeroVuelo}`).toPromise().then(res => {
+      this.asientosDisponibles = res;
+      console.log(this.asientosDisponibles);
+      this.comentarios = JSON.parse(this.asientosDisponibles.asientos);
+      console.log(this.comentarios);
+      this.comentarios.forEach(element => {
+        const group = element.group;
+        const value = element.value;
+        this.reserva.asientos.push({ group, value });
+      });
+    });
+  }
+
+
+  asientoStatus(event) {
+    const group = event.path[1].id;
+    const nodeSelected = $(`#${event.path[0].id}`);
+    const value = nodeSelected[0].innerText;
+    this.reserva.asientos.push({ group, value });
+
+    nodeSelected.toggleClass('asientoLibre').toggleClass('asientoOcupado');
+    if (nodeSelected.hasClass('asientoOcupado')) {
+      this.usuarioForm.get("numeroAsiento").setValue(group + value);
+    }
+    if (nodeSelected.hasClass('asientoLibre')) {
+      this.reserva.asientos.forEach(element => {
+        if (element.group === group && element.value === value) {
+          this.reserva.asientos.splice(this.reserva.asientos.indexOf(element), 1);
+          if (this.reserva.asientos.length <= 1) {
+            this.reserva.asientos = [];
+            this.usuarioForm.get("numeroAsiento").setValue(null);
+          }
+        }
+      });
+    }
+    console.log(this.reserva.asientos);
+    console.log(group, nodeSelected, value);
+    console.log(this.usuarioForm.get("numeroAsiento").value);
+  }
+
 }
