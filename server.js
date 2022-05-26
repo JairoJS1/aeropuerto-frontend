@@ -9,8 +9,8 @@ app.use(express.static('./dist/examen-final-front'));
 
 app.get('/*', function(req,res) {
 
-res.sendFile(path.join(__dirname,'/dist/examen-final-front/index.html'));
+res.sendFile(path.join(__dirname,'/dist/aeropuerto-frontend/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 'http://localhost:8080');
+app.listen(process.env.PORT || 'https://aeropuerto-backend.herokuapp.com/');
