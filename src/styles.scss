@@ -13,11 +13,16 @@ mat-form-field {
     }
   }
 
+  
   .btn-container {
     display: inline-flex !important;
     align-items: flex-end !important;
     border-radius: 4px !important;
     padding: 2px 16px !important;
+
+  
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: box-shadow, transform !important;
   
     i {
       font-size: 16px !important;
@@ -41,15 +46,15 @@ mat-form-field {
     width: 100%;
   }
   
-  td {
+  td{
     text-align: left;
   }
   
   .header-table {
-    background-color: #030303;
-    color: white;
+    background-color: rgb(91, 165, 235);
+    color: black;
     text-align: left;
-    font-size: 14px;
+    font-size: 16px;
   }
 
 
@@ -81,4 +86,16 @@ mat-form-field {
     label {
       color: #000000;
     }
+  }
+
+  .titulo {
+    text-align: center;
+    display: flex !important;
+    height: 48px;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background: rgb(91, 165, 235);
+    color: white;
   }

@@ -1,0 +1,186 @@
+<body class="hold-transition sidebar-mini top">
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner small-box-footer" type="button" data-toggle="modal" data-target="#crearteAdminModal"
+                (click)="limpiar()">
+                <h3>
+                    <mat-icon class="icon">add</mat-icon>
+                    <span> Crear Avión</span>
+                </h3>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="col-sm-6">
+                                <mat-form-field class="filtro">
+                                    <mat-label>Filtro</mat-label>
+                                    <input matInput (keyup)="filtro($event)" autocomplete="off">
+                                </mat-form-field>
+                            </div>
+                            <div class="mat-elevation-z8">
+                                <div class="table-responsive">
+                                    <table mat-table [dataSource]="dataSource">
+
+                                        <!-- ID Column -->
+                                        <ng-container matColumnDef="numeroAvion">
+                                            <th mat-header-cell *matHeaderCellDef class="header-table start"> Número Avión </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.id_Avion}} </td>
+                                        </ng-container>
+
+                                        <!-- Nombre Column -->
+                                        <ng-container matColumnDef="modelo">
+                                            <th mat-header-cell *matHeaderCellDef class="header-table"> Modelo </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
+                                        </ng-container>
+
+                                        <!-- Teléfono Column -->
+                                        <ng-container matColumnDef="anio">
+                                            <th mat-header-cell *matHeaderCellDef class="header-table"> Año </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.anio}} </td>
+                                        </ng-container>
+
+                                        <!-- Correo Column -->
+                                        <ng-container matColumnDef="estado">
+                                            <th mat-header-cell *matHeaderCellDef class="header-table"> Estado </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.detalleEstado}} </td>
+                                        </ng-container>
+
+                                        
+                                        <!-- Acciones Column -->
+                                        <ng-container matColumnDef="acciones">
+                                            <th mat-header-cell *matHeaderCellDef class="header-table end"> Acciones </th>
+                                            <td mat-cell *matCellDef="let element" class="accion">
+                                                <span class="material-icons botonAccion" [matMenuTriggerFor]="menu"
+                                                    style="cursor: pointer;"
+                                                    aria-label="Example icon-button with a menu">more_vert</span>
+
+                                                <mat-menu #menu="matMenu">
+                                                    <button mat-menu-item title="Actualizar avion" class="iconos"
+                                                        data-toggle="modal" data-target="#crearteAdminModal"
+                                                        (click)="actualizarAvion(element)">
+                                                        <mat-icon class="iconos">edit</mat-icon>
+                                                        <span>Modificar Avión</span>
+                                                    </button>
+
+                                                    <button mat-menu-item title="Eliminar aerolinea" class="iconos"
+                                                        (click)=" eliminarAvion(element)">
+                                                        <mat-icon class="iconos">delete</mat-icon>
+                                                        <span>Eliminar Avión</span>
+                                                    </button>
+                                                </mat-menu>
+                                            </td>
+                                        </ng-container>
+
+                                        <tr mat-header-row *matHeaderRowDef="headerColumnNames"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: headerColumnNames;"></tr>
+                                    </table>
+                                </div>
+                                <mat-paginator [pageSizeOptions]="[5,15,25,50,100]" showFirstLastButtons>
+                                </mat-paginator>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+
+<!--Modal para actulizar una aerolinea-->
+<div class="modal fade" id="crearteAdminModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">{{!actualizar ? 'Crear' : 'Modificar'}} avión</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-12">
+
+                        <form [formGroup]="actualizarForm">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Número de avión</mat-label>
+                                        <input matInput type="text" autocomplete="off" maxlength="10" formControlName="numeroAvion">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Modelo</mat-label>
+                                        <input matInput type="text" autocomplete="off" maxlength="50" formControlName="modelo">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Año</mat-label>
+                                        <input matInput type="text" autocomplete="off" maxlength="4" formControlName="anio">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Aerolinea</mat-label>
+                                        <mat-select formControlName="aerolinea">
+                                            <mat-option *ngFor="let aerolinea of aerolineas" [value]="aerolinea.id_Aerolinea">
+                                                {{ aerolinea.nombre_Aerolinea }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Estado</mat-label>
+                                        <mat-select formControlName="estadoAvion">
+                                            <mat-option *ngFor="let estado of estados" [value]="estado.codigo">
+                                                {{ estado.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+
+                <button mat-raised-button type="button" color="warn" class="btn-container"
+                    style="margin: 7px !important;" data-dismiss="modal" (click)="limpiar()">
+                    <mat-icon>clear</mat-icon>
+                    Cancelar
+                </button>
+                <button mat-raised-button type="button" color="primary" class="btn-container"
+                    [disabled]="actualizarForm.invalid" style="margin: 7px !important;" data-dismiss="modal"
+                    (click)="guardarAvion()">
+                    <mat-icon>save</mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

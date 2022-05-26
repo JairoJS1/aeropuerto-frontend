@@ -1,0 +1,111 @@
+<div class="container-fluid top">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card-body">
+                <div class="separador">
+                    <div class="container-fluid">
+                        <form [formGroup]="busquedaBoleto">
+                            <div class="form-group row ">
+                                <div class="col-md-6 ">
+                                    <mat-form-field class="example-width">
+                                        <mat-label>Número de Boleto</mat-label>
+                                        <input matInput formControlName="noBoleto" placeholder="" maxlength="50"
+                                            autocomplete="off" (change)="buscarBoleto()">
+                                        <mat-error
+                                            *ngIf="busquedaBoleto.get('noBoleto').hasError('required') && busquedaBoleto.get('noBoleto').touched">
+                                            Este campo es <strong>obligatorio</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div *ngIf="busqueda">
+    <!--Detalle del registro-->
+    <div class="container">
+        <div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card top">
+                        <div class="titulo">
+                            Datos del boleto
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <label class="text-secondary"><b>Nombre del pasajero:</b> <span
+                                        class="text-dark">{{boleto.nombrePasajero}}</span>
+                                </label>
+                                <br>
+                            </div>
+                            <label class="text-secondary"><b>Apellido del pasajero:</b> <span
+                                    class="text-dark">{{boleto.apellidoPasajero}}</span>
+                            </label>
+                            <br>
+                            <label class="text-secondary"><b>Número de pasaporte:</b> <span
+                                    class="text-dark">{{boleto.numeroPasaporte}}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="card top">
+                        <div class="titulo">
+                            Datos del avión
+                        </div>
+                        <div class="card-body">
+                            <label class="text-secondary"><b>Número de vuelo:</b> <span
+                                    class="text-dark">{{boleto.numeroVuelo}}</span>
+                            </label>
+                            <br>
+
+                            <label class="text-secondary"><b>Aerolinea:</b> <span
+                                    class="text-dark">{{boleto.nombreAerolinea}}</span>
+                            </label>
+                            <br>
+                            <label class="text-secondary"><b>Origen:</b> <span
+                                    class="text-dark">{{boleto.origen}}</span>
+                            </label>
+                            <br>
+                            <label class="text-secondary"><b>Destino:</b> <span class="text-dark">{{boleto.destino}} -
+                                    {{boleto.descDestino}}</span>
+                            </label>
+                            <br>
+                            <label class="text-secondary"><b>Horario para despegue:</b> <span
+                                    class="text-dark">{{boleto.horaDespegue |
+                                    date:"dd/MM/yyyy HH:mm:ss"}}</span>
+                            </label>
+                            <br>
+
+                            <label class="text-secondary"><b>Aterrizaje:</b> <span
+                                    class="text-dark">{{boleto.horaAterrizaje |
+                                    date:"dd/MM/yyyy HH:mm:ss"}}</span>
+                            </label>
+                            <br>
+
+                            <label class="text-secondary"><b>Escalas:</b> <span class="text-dark">{{boleto.escalaPais}}
+                                    -
+                                    {{boleto.escalaCiudad}}</span>
+                            </label>
+                            <br>
+                            <label class="text-secondary"><b>Estado del Vuelo:</b> <span class="text-dark">
+                                    {{boleto.estadoVuelo}}</span>
+                            </label>
+                            <br>
+                            <button mat-raised-button type="button" color="primary" class="btn-container mr-2 mt-3" (click)="itinerario()">
+                                <mat-icon>assignment_late</mat-icon>
+                                Descargar Itinerarios
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
