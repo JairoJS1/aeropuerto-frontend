@@ -20,6 +20,13 @@ export class AdministracionEmpleadosComponent implements OnInit {
   actualizar: boolean = false;
   estados: any;
   //identificadores, no afecta
+  key: any;
+  teclado: any;
+  numero: any;
+  especiales: any;
+  teclado_especial: boolean;
+
+
   headerColumnNames: string[] = ['nombre', 'departamento', 'estado', 'acciones'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -248,4 +255,40 @@ export class AdministracionEmpleadosComponent implements OnInit {
 
   }
 
+
+
+  public telefonoValidar(e) {
+    this.key = e.keyCode || e.which;
+    this.teclado = String.fromCharCode(this.key);
+    this.especiales = '8';
+    this.numero = '0123456789';
+    this.teclado_especial = false;
+
+    for (const i in this.especiales) {
+      if (this.key === this.especiales[i]) {
+        this.teclado_especial = true;
+      }
+    }
+    if (this.numero.indexOf(this.teclado) === -1 && !this.teclado_especial) {
+      return false;
+    }
+  }
+
+
+  public dpiValidar(e) {
+    this.key = e.keyCode || e.which;
+    this.teclado = String.fromCharCode(this.key);
+    this.especiales = '13';
+    this.numero = '0123456789';
+    this.teclado_especial = false;
+
+    for (const i in this.especiales) {
+      if (this.key === this.especiales[i]) {
+        this.teclado_especial = true;
+      }
+    }
+    if (this.numero.indexOf(this.teclado) === -1 && !this.teclado_especial) {
+      return false;
+    }
+  }
 }
