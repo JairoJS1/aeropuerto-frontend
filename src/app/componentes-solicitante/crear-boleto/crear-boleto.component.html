@@ -94,18 +94,23 @@
                   <div class="titulo">
                     {{vuelos?.nombreAerolinea}}
                   </div>
-                  <mat-card (click)="elegirVuelo(vuelos)" style=" cursor: pointer;">
-
-                    <mat-label><b>Hora de Salida: </b> {{vuelos?.hora_salida | date: 'dd/MM/yyyy HH:mm:ss' }}</mat-label>
-                    <br>
-                    <mat-label><b>Hora de Aterrizaje: </b> {{vuelos?.hora_llegada | date: 'dd/MM/yyyy HH:mm:ss' }}</mat-label>
-                    <br>
-                    <mat-label><b>Origen: </b>{{vuelos?.origenDescripcion }}</mat-label>
-                    <br>
-                    <mat-label><b>Destino: </b> {{vuelos?.destinoDescripcion }} - {{vuelos?.destinoDescripcion2}}</mat-label>
-                    <br>
-                    <mat-label><b>Escala: </b>{{vuelos?.paisEscala}} - {{vuelos?.ciudadEscala}}</mat-label>
-                  </mat-card>
+                  <div>
+                    <mat-card (click)="elegirAerolina($event, vuelos)" class='asientoLibre2'
+                      id="{{vuelos.idAerolinea}}">
+                      <mat-label><b>Hora de Salida: </b> {{vuelos?.hora_salida | date: 'dd/MM/yyyy HH:mm:ss' }}
+                      </mat-label>
+                      <br>
+                      <mat-label><b>Hora de Aterrizaje: </b> {{vuelos?.hora_llegada | date: 'dd/MM/yyyy HH:mm:ss' }}
+                      </mat-label>
+                      <br>
+                      <mat-label><b>Origen: </b>{{vuelos?.origenDescripcion }}</mat-label>
+                      <br>
+                      <mat-label><b>Destino: </b> {{vuelos?.destinoDescripcion }} - {{vuelos?.destinoDescripcion2}}
+                      </mat-label>
+                      <br>
+                      <mat-label><b>Escala: </b>{{vuelos?.paisEscala}} - {{vuelos?.ciudadEscala}}</mat-label>
+                    </mat-card>
+                  </div>
                 </div>
               </div>
             </div>
@@ -113,11 +118,16 @@
             <mat-divider></mat-divider>
             <div class="row mt-4 pt-3">
               <div class="ml-auto">
+                <button mat-raised-button type="button" color="primary" class="btn-container mr-2 mt-3"
+                      matStepperPrevious>
+                      <mat-icon>arrow_back</mat-icon>
+                      Atras
+                    </button>
                 <button mat-raised-button color="warn" class="btn-container mr-2" type="button" (click)="limpiar()">
                   <mat-icon>clear</mat-icon>
                   Cancelar
                 </button>
-                <button mat-raised-button type="button" color="primary" class="btn-container mr-3" matStepperNext>
+                <button mat-raised-button type="button" color="primary" class="btn-container mr-3" [disabled]="!node" matStepperNext>
                   <mat-icon>arrow_forward</mat-icon>
                   Siguiente
                 </button>
@@ -303,7 +313,7 @@
                       Cancelar
                     </button>
                     <button mat-raised-button type="button" color="primary" class="btn-container mt-3"
-                      [disabled]="boletoForm.invalid || usuarioForm.invalid" (click)="enviarBoleto()">
+                      [disabled]="boletoForm.invalid || usuarioForm.invalid || (asiento == false)" (click)="enviarBoleto()">
                       <mat-icon>send</mat-icon>
                       Crear Boleto
                     </button>

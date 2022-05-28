@@ -32,6 +32,8 @@ export class CrearBoletoComponent implements OnInit {
   crearBoleto: any;
   asientosDisponibles: any;
   comentarios: any;
+  node: boolean = false;
+  asiento: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('close') close;
@@ -83,13 +85,6 @@ export class CrearBoletoComponent implements OnInit {
     this.services.forcedNavigate(['/crear-boleto']);
   }
 
-  elegirVuelo(vuelo) {
-    console.log(vuelo);
-    this.boletoForm.get("numeroVuelo").setValue(vuelo.numero_vuelo);
-    this.boletoForm.get("horaSalida").setValue(vuelo.hora_salida);
-    this.boletoForm.get("horaLlegada").setValue(vuelo.hora_llegada);
-    this.getSesiones();
-  }
 
 
   buscarVuelo() {
@@ -106,6 +101,7 @@ export class CrearBoletoComponent implements OnInit {
           showCloseButton: true,
           showConfirmButton: false
         });
+        this.destino = false;
         this.boletoForm.get("origenVuelo").setValue("");
         this.boletoForm.get("destinoVuelo").setValue("");
       } else {
@@ -239,7 +235,20 @@ export class CrearBoletoComponent implements OnInit {
 
     nodeSelected.toggleClass('asientoLibre').toggleClass('asientoOcupado');
     if (nodeSelected.hasClass('asientoOcupado')) {
-      this.usuarioForm.get("numeroAsiento").setValue(group + value);
+      
+      if (this.asiento) {
+        this.asiento = false;
+      } else {
+        this.asiento = true;
+        this.usuarioForm.get("numeroAsiento").setValue(group + value);
+      }
+    } else {
+      if (!this.asiento) {
+        this.asiento = true;
+
+      } else {
+        this.asiento = false;
+      }
     }
     if (nodeSelected.hasClass('asientoLibre')) {
       this.reserva.asientos.forEach(element => {
@@ -255,6 +264,37 @@ export class CrearBoletoComponent implements OnInit {
     console.log(this.reserva.asientos);
     console.log(group, nodeSelected, value);
     console.log(this.usuarioForm.get("numeroAsiento").value);
+  }
+
+  elegirVuelo(vuelo) {
+    console.log(vuelo);
+    this.boletoForm.get("numeroVuelo").setValue(vuelo.numero_vuelo);
+    this.boletoForm.get("horaSalida").setValue(vuelo.hora_salida);
+    this.boletoForm.get("horaLlegada").setValue(vuelo.hora_llegada);
+    this.getSesiones();
+  }
+
+  elegirAerolina(event, vuelo) {
+    let nodeSelected = $(`#${event.path[0].id}`);
+    console.log(event.path[0].id);
+    nodeSelected.toggleClass('asientoLibre2').toggleClass('asientoOcupado2');
+    if (nodeSelected.hasClass('asientoOcupado2')) {
+      console.log("entre");
+      if (this.node) {
+        this.node = false;
+      } else {
+        this.node = true;
+        this.elegirVuelo(vuelo);
+      }
+    } else {
+      if (!this.node) {
+        this.node = true;
+
+      } else {
+        this.node = false;
+      }
+
+    }
   }
 
 }

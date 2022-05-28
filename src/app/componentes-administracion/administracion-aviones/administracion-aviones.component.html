@@ -118,13 +118,13 @@
                                 <div class="col-sm-6">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Número de avión</mat-label>
-                                        <input matInput type="text" autocomplete="off" maxlength="10" formControlName="numeroAvion">
+                                        <input matInput type="text" autocomplete="off" maxlength="10" formControlName="numeroAvion" pattern="[a-zA-Z0-9_]+[a-zA-Z0-9_-]+[a-zA-Z0-9_]">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-6">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Modelo</mat-label>
-                                        <input matInput type="text" autocomplete="off" maxlength="50" formControlName="modelo">
+                                        <input matInput type="text" autocomplete="off" maxlength="50" formControlName="modelo" pattern="[a-zA-Z0-9_]+[a-zA-Z0-9_-]+[a-zA-Z0-9_]">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                 <div class="col-sm-6">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Año</mat-label>
-                                        <input matInput type="text" autocomplete="off" maxlength="4" formControlName="anio">
+                                        <input matInput type="tel" autocomplete="off" minlength="4" maxlength="4" formControlName="anio" (keypress)="anioValidar($event)">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-6">

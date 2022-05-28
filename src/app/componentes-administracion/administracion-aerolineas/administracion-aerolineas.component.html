@@ -118,13 +118,13 @@
                                 <div class="col-sm-6">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Nombre</mat-label>
-                                        <input matInput type="text" autocomplete="off" maxlength="50" formControlName="nombreAerolinea">
+                                        <input matInput type="text" autocomplete="off" maxlength="50" formControlName="nombreAerolinea" pattern="[a-zA-Z0-9_]+[a-zA-Z0-9_-]+[a-zA-Z0-9_]">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-6">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Teléfono</mat-label>
-                                        <input matInput type="tel"  autocomplete="off" maxlength="8" formControlName="telefonoAerolinea"
+                                        <input matInput type="tel"  autocomplete="off" minlength="8" maxlength="8" formControlName="telefonoAerolinea"
                                         (keypress)="numeroTelefono($event)">
                                     </mat-form-field>
                                 </div>

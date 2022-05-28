@@ -1,0 +1,45 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+ $blue-sat: (
+    50 : #e3edf4,
+    100 : #b8d2e3,
+    200 : #89b4d0,
+    300 : #5a96bd,
+    400 : #3680ae,
+    500 : #1369a0,
+    600 : #116198,
+    700 : #0e568e,
+    800 : #0b4c84,
+    900 : #063b73,
+    A100 : #a2caff,
+    A200 : #6facff,
+    A400 : #3c8fff,
+    A700 : #2380ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+$my-custom-primary: mat-palette($blue-sat);
+$my-custom-accent: mat-palette($mat-pink);
+$my-custom-warn: mat-palette($mat-red);
+
+$my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
+
+@include angular-material-theme($my-custom-theme);
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static('./dist/examen-final-front'));
+app.use(express.static('./dist/aeropuerto-frontend'));
 
 app.get('/*', function(req,res) {
 
@@ -13,4 +13,4 @@ res.sendFile(path.join(__dirname,'/dist/aeropuerto-frontend/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 'https://aeropuerto-backend.herokuapp.com/');
+app.listen(process.env.PORT || 'https://aeropuerto-backend.herokuapp.com');

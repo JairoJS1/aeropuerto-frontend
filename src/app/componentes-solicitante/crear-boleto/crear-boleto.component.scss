@@ -189,3 +189,31 @@ main {
     color: #1369a0;
     font-weight: bold;
   }
+
+
+
+
+  .asientoLibre2 {
+    border: 30px solid black;
+    border-color: white;
+   background-color: white;
+  }
+  
+  .asientoLibre2:hover {
+    border-color: #00184B;
+    background-color: #00184B;
+    cursor: pointer;
+  }
+
+
+  .asientoOcupado2 {
+    border: 30px solid black;
+    border-color: #0E893D;
+    background-color: #0E893D;
+  }
+  
+  .asientoOcupado2:hover {
+    border-color: #00184B;
+    background-color: #00184B;
+    cursor: pointer;
+  }
