@@ -1,0 +1,74 @@
+<div class="modal-content">
+    <mat-card>
+        <div class="modal-header">
+            <h2 class="modal-title">Ingrese su informacion para registrarse </h2>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="registro">
+                <div class="col-sm-6">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput type="text" autocomplete="off" maxlength="50" id="user" name="user"
+                            formControlName="user" required>
+                            <mat-error *ngIf="registro.get('user').hasError('required')">
+                                El usuario es <strong>obligatorio.</strong>
+                              </mat-error>
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="col-sm-6">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" id="contra" name="contra"
+                            formControlName="contra" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-hint>La Contraseña debe contener al menos 8 caracteres.</mat-hint>
+                        <mat-error *ngIf="registro.get('contra').hasError('required')">
+                            La Contraseña es <strong>obligatoria.</strong>
+                          </mat-error>
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="col-sm-6">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput type="text" autocomplete="off" maxlength="50" id="name" name="name"
+                            formControlName="name" required>
+                            <mat-error *ngIf="registro.get('name').hasError('required')">
+                                El nombre es <strong>obligatorio.</strong>
+                              </mat-error>
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="col-sm-6">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" autocomplete="off" maxlength="50" id="email" name="email"
+                            formControlName="email" required>
+                            <mat-error *ngIf="registro.get('email').hasError('email') && !registro.get('email').hasError('required')">
+                                Ingrese una direccion Email valida.
+                              </mat-error>
+                              <mat-error *ngIf="registro.get('email').hasError('required')">
+                                Email es <strong>obligatorio.</strong>
+                              </mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer ">
+            <button mat-raised-button type="button" color="primary" class="btn-container"
+                style="margin: 7px !important;" (click)="registrar()" [disabled]="registro.invalid">
+                Registrar
+            </button>
+        </div>
+    </mat-card>
+    <div style="margin: 10px;">
+        <h5>
+            <h6></h6>
+            Ya tienes cuenta ? <a href="/login">Inicia sesion !</a>
+        </h5>
+    </div>
+</div>

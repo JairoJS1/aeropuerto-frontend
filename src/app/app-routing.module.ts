@@ -8,8 +8,11 @@ import { RevisarBoletoComponent } from './componentes-administracion/revisar-bol
 import { ConsultaBoletoComponent } from './componentes-solicitante/consulta-boleto/consulta-boleto.component';
 import { CrearBoletoComponent } from './componentes-solicitante/crear-boleto/crear-boleto.component';
 import { PlantillaBoletoComponent } from './componentes-solicitante/plantilla-boleto/plantilla-boleto.component';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   {
     path: 'crear-boleto',
     component: CrearBoletoComponent
@@ -41,6 +44,14 @@ const routes: Routes = [
   {
     path: 'consulta-boleto',
     component: ConsultaBoletoComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'sign-up',
+    component: SignUpComponent
   }
 ];
 

@@ -14,6 +14,20 @@ import { AdministracionVuelosComponent } from './componentes-administracion/admi
 import { AdministracionEmpleadosComponent } from './componentes-administracion/administracion-empleados/administracion-empleados.component';
 import { RevisarBoletoComponent } from './componentes-administracion/revisar-boleto/revisar-boleto.component';
 import { ConsultaBoletoComponent } from './componentes-solicitante/consulta-boleto/consulta-boleto.component';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import Amplify from 'aws-amplify';
+
+
+Amplify.configure({
+  Auth:{
+    mandatorySignIn:true,
+    region: 'us-east-1',
+    userPoolId: 'us-east-1_1YxqGFRfe',
+    userPoolWebClientId: '2s3fqpvsraqhuc047f52k5el3l',
+    authenticationFlowType: 'USER_PASSWORD_AUTH'
+  }
+})
 
 @NgModule({
   declarations: [
@@ -26,6 +40,8 @@ import { ConsultaBoletoComponent } from './componentes-solicitante/consulta-bole
     PlantillaBoletoComponent,
     RevisarBoletoComponent,
     ConsultaBoletoComponent,
+    LoginComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
