@@ -1,14 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { ERROR_COMPONENT_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthErrorStrings } from '@aws-amplify/auth';
-import { AuthErrorTypes } from '@aws-amplify/auth/lib-esm/types';
 import { Auth } from 'aws-amplify';
-import { error } from 'console';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { userInfo } from 'os';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -49,16 +43,16 @@ export class SignUpComponent implements OnInit {
           nickname: "Cliente" //rol para Clientes
         }
       });
-      console.log({user});
+      console.log({ user });
       console.log('Cuenta creado con Exito');
-        //codigo a ejecutar si funciona 
-        Swal.fire({
-          titleText: `Su cuenta se ha creado, confirme su cuenta de Correo para continuar.`,
-          icon: 'success',
-          showCloseButton: true,
-          showConfirmButton: false
-        });
-        this.spinner.hide();
+      //codigo a ejecutar si funciona 
+      Swal.fire({
+        titleText: `Su cuenta se ha creado, confirme su cuenta de Correo para continuar.`,
+        icon: 'success',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
+      this.spinner.hide();
     } catch (error) {
       console.log(error);
       this.spinner.hide();
@@ -69,7 +63,6 @@ export class SignUpComponent implements OnInit {
         showConfirmButton: false
       });
     }
-
   }
 
 }

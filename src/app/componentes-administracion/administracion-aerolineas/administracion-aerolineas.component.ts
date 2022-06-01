@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ActulizarAerolinea, Aerolinea } from 'src/app/componentes-comunes/classes/Aerolinea.class';
+import { Aerolinea } from 'src/app/componentes-comunes/classes/Aerolinea.class';
 import { Servicios } from 'src/app/componentes-comunes/services/servicios.service';
 import Swal from 'sweetalert2';
 
@@ -24,6 +24,9 @@ export class AdministracionAerolineasComponent implements OnInit {
   numero: any;
   especiales: any;
   teclado_especial: boolean;
+  roles: any;
+  loaded: boolean = false;
+  msg = '';
 
   headerColumnNames: string[] = ['idAerolinea', 'nombre', 'telefono', 'correo', 'acciones'];
   dataSource = new MatTableDataSource();
@@ -47,12 +50,14 @@ export class AdministracionAerolineasComponent implements OnInit {
   }
 
   async ngOnInit() {
-    /*     this.spinner.show();
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 4000); */
-    this.obtenerAerolinea();
-
+    this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
+    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Admin' ) {
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+      this.loaded = true;
+    }else{
+      this.loaded = false;
+      this.obtenerAerolinea();
+    }
   }
 
   async obtenerAerolinea() {

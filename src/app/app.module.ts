@@ -17,6 +17,8 @@ import { ConsultaBoletoComponent } from './componentes-solicitante/consulta-bole
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import Amplify from 'aws-amplify';
+import { ErrorComponent } from './componentes-comunes/services/error/error/error.component';
+import { MenuComponent } from './componentes-administracion/menu/menu.component';
 
 
 Amplify.configure({
@@ -42,6 +44,8 @@ Amplify.configure({
     ConsultaBoletoComponent,
     LoginComponent,
     SignUpComponent,
+    ErrorComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

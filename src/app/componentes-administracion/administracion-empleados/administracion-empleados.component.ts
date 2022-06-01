@@ -25,7 +25,9 @@ export class AdministracionEmpleadosComponent implements OnInit {
   numero: any;
   especiales: any;
   teclado_especial: boolean;
-
+  roles: any;
+  loaded: boolean = false;
+  msg = '';
 
   headerColumnNames: string[] = ['nombre', 'departamento', 'estado', 'acciones'];
   dataSource = new MatTableDataSource();
@@ -51,7 +53,16 @@ export class AdministracionEmpleadosComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.obtenerEmpleados();
+    this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
+    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Admin') {
+      
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+      this.loaded = true;
+    }else{
+      this.loaded = false;
+      this.obtenerEmpleados();
+    }
+    
   }
 
   async obtenerEmpleados() {
@@ -215,7 +226,7 @@ export class AdministracionEmpleadosComponent implements OnInit {
             nombreEmpleado: this.actualizarForm.get('nombre').value,
             apellidoEmpleado: this.actualizarForm.get('apellido').value,
             telefonoEmpleado: this.actualizarForm.get('telefono').value,
-            fechaNacimiento: moment(this.actualizarForm.get('fechaNac').value).format('YYYY-MM-DD') ,
+            fechaNacimiento: moment(this.actualizarForm.get('fechaNac').value).format('YYYY-MM-DD'),
             correoEmpleado: this.actualizarForm.get('correo').value,
             departamentoEmpleado: this.actualizarForm.get('departamento').value,
             estadoEmpleado: 7,

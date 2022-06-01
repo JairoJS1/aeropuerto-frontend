@@ -14,6 +14,9 @@ export class ConsultaBoletoComponent implements OnInit {
   cancelacionForm: FormGroup;
   boleto: any;
   busqueda: boolean = false;
+  roles: any;
+  loaded: boolean = false;
+  msg = '';
   constructor(private _formBuilder: FormBuilder,
     private services: Servicios,
     private spinner: NgxSpinnerService) {
@@ -26,7 +29,12 @@ export class ConsultaBoletoComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
+    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Cliente') {
+      
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+      this.loaded = true;
+    }
   }
 
 

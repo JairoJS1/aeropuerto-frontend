@@ -4,6 +4,7 @@ import { AdministracionAerolineasComponent } from './componentes-administracion/
 import { AdministracionAvionesComponent } from './componentes-administracion/administracion-aviones/administracion-aviones.component';
 import { AdministracionEmpleadosComponent } from './componentes-administracion/administracion-empleados/administracion-empleados.component';
 import { AdministracionVuelosComponent } from './componentes-administracion/administracion-vuelos/administracion-vuelos.component';
+import { MenuComponent } from './componentes-administracion/menu/menu.component';
 import { RevisarBoletoComponent } from './componentes-administracion/revisar-boleto/revisar-boleto.component';
 import { ConsultaBoletoComponent } from './componentes-solicitante/consulta-boleto/consulta-boleto.component';
 import { CrearBoletoComponent } from './componentes-solicitante/crear-boleto/crear-boleto.component';
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent
+  },
+  {
+    path: 'menu',
+    component: MenuComponent
   }
 ];
 

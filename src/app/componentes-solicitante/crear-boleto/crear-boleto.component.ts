@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import * as moment from 'moment';
@@ -7,6 +7,8 @@ import { Boleto } from 'src/app/componentes-comunes/classes/Boleto.class';
 import { Servicios } from 'src/app/componentes-comunes/services/servicios.service';
 import Swal from 'sweetalert2';
 import { PlantillaBoletoComponent } from '../plantilla-boleto/plantilla-boleto.component';
+
+
 declare var $: any;
 @Component({
   selector: 'app-crear-boleto',
@@ -16,7 +18,6 @@ declare var $: any;
 export class CrearBoletoComponent implements OnInit {
   boleto2?: Boleto;
   @ViewChild('registroForm') registroForm?: PlantillaBoletoComponent | any;
-
 
   reserva = { sesion: {}, asientos: [] };
   sesiones: any
@@ -34,14 +35,19 @@ export class CrearBoletoComponent implements OnInit {
   comentarios: any;
   node: boolean = false;
   asiento: boolean = false;
+  roles: any;
+  loaded: boolean = false;
+  msg = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('close') close;
+  @Inject('obtenerRol') GlobalVariable: any
 
   constructor(
     private services: Servicios,
     private spinner: NgxSpinnerService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+
   ) {
     this.usuarioForm = this.formBuilder.group({
       numeroAsiento: ['', Validators.required],/** */
@@ -59,8 +65,16 @@ export class CrearBoletoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.listDestino = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'catalogos/codigo/padre/10').toPromise();
-    this.listOrigen = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'catalogos/codigo/padre/9').toPromise();
+    this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
+    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Cliente') {
+      
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+      this.loaded = true;
+    }else{
+      this.loaded = false;
+      this.listDestino = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'catalogos/codigo/padre/10').toPromise();
+      this.listOrigen = await this.services.getData(this.services.BASE_URL_AEROPUERTO, 'catalogos/codigo/padre/9').toPromise();
+    }
   }
 
   buscarUsuario(numeroPasaporte) {
@@ -235,7 +249,7 @@ export class CrearBoletoComponent implements OnInit {
 
     nodeSelected.toggleClass('asientoLibre').toggleClass('asientoOcupado');
     if (nodeSelected.hasClass('asientoOcupado')) {
-      
+
       if (this.asiento) {
         this.asiento = false;
       } else {
@@ -298,3 +312,4 @@ export class CrearBoletoComponent implements OnInit {
   }
 
 }
+

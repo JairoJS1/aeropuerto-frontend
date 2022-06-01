@@ -14,6 +14,9 @@ export class RevisarBoletoComponent implements OnInit {
   cancelacionForm: FormGroup;
   boleto: any;
   busqueda: boolean = false;
+  roles: any;
+  loaded: boolean = false;
+  msg = '';
   constructor(private _formBuilder: FormBuilder,
     private services: Servicios,
     private spinner: NgxSpinnerService) {
@@ -26,7 +29,11 @@ export class RevisarBoletoComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
+    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Admin') {
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+      this.loaded = true;
+    }
   }
 
 
@@ -66,26 +73,26 @@ export class RevisarBoletoComponent implements OnInit {
       presentacion: true,
       estadoBoleto: 13
     };
-  this.services.putData(this.services.BASE_URL_AEROPUERTO, `boleto/actualizar/${(this.boleto.idBoleto)}`, boleto).toPromise().then(res => {
-    console.log(res);
-    Swal.fire({
-      titleText: 'La información se ha guardado con éxito.',
-      icon: 'success',
-      showCloseButton: true,
-      showConfirmButton: false
+    this.services.putData(this.services.BASE_URL_AEROPUERTO, `boleto/actualizar/${(this.boleto.idBoleto)}`, boleto).toPromise().then(res => {
+      console.log(res);
+      Swal.fire({
+        titleText: 'La información se ha guardado con éxito.',
+        icon: 'success',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
+      this.limpiar();
+      this.spinner.hide();
+    }).catch(err => {
+      console.log(err);
+      Swal.fire({
+        titleText: 'Error al registrar datos, por favor intente en otro momento',
+        icon: 'error',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
     });
-    this.limpiar();
     this.spinner.hide();
-  }).catch(err => {
-    console.log(err);
-    Swal.fire({
-      titleText: 'Error al registrar datos, por favor intente en otro momento',
-      icon: 'error',
-      showCloseButton: true,
-      showConfirmButton: false
-    });
-  });
-  this.spinner.hide();
-}
+  }
 
 }

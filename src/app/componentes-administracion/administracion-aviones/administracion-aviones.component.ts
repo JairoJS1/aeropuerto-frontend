@@ -24,6 +24,10 @@ export class AdministracionAvionesComponent implements OnInit {
   numero: any;
   especiales: any;
   teclado_especial: boolean;
+  roles: any;
+  loaded: boolean = false;
+  msg = '';
+
   headerColumnNames: string[] = ['numeroAvion', 'modelo', 'anio', 'estado', 'acciones'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -45,7 +49,15 @@ export class AdministracionAvionesComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.obtenerAviones();
+    this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
+    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Admin') {
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+      this.loaded = true;
+    }else{
+      this.loaded = false;
+      this.obtenerAviones();
+    }
+   
   }
 
   async obtenerAviones() {
