@@ -1,0 +1,182 @@
+table {
+    width: 100%;
+
+}
+
+.top {
+    margin-top: 20px;
+}
+
+
+body {
+    margin: 0;
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: transparent;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+
+.table tbody+tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+::ng-deep .mat-sort-header-arrow {
+    color: #fff !important;
+  }
+  
+  .iconos{
+    color: black;
+  }
+
+
+  .small-box {
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: block;
+    position: relative;
+    height: 55px;
+  }
+
+  .small-box > .small-box-footer {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    z-index: 10;
+  }
+  
+  .small-box > .small-box-footer:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #fff;
+  }
+  
+  .small-box h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin: 0 0 10px;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  .small-box > .inner {
+    padding: 10px;
+  }
+
+  .bg-success {
+    background-color:  #28a745 !important;
+  }
+
+.bg-success,
+.bg-success > a {
+  color: #fff !important;
+}
+
+.bg-success.btn:hover {
+  border-color: #1e7e34;
+  color: #ececec;
+}
+
+.bg-success.btn:not(:disabled):not(.disabled):active, .bg-success.btn:not(:disabled):not(.disabled).active, .bg-success.btn:active, .bg-success.btn.active {
+  background-color: #1e7e34 !important;
+  border-color: #1c7430;
+  color: #fff;
+}
+
+.icon {
+    transform: scale(1.4);
+    color: white;
+ }
+
+ ::ng-deep .cdk-overlay-container {
+  z-index: 1200 !important;
+}
+
+
+a{
+  font-weight: 500;
+  color: #28a745;
+}
+
+mat-label {
+  font: 1em segoe UI;
+  font-size: medium;
+}
+
+.modal-title{
+  font: 1em segoe UI;
+  font-weight: bold;
+  font-size: 0.7cm;
+}
+
+
+
+
+.login-box {
+  width: 450px;
+  height: 620px;
+  color: black;
+  top: 60%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+}
+
+.login-box .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: absolute;
+  top: -100px;
+  left: calc(50% - 70px);
+  border: 1px solid black;
+}
+
+h2 {
+  display: inline;
+  text-align: center;
+
+}
+
+.login-box label {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+.boton{
+  height: 40px;
+  width: 500px;
+}
+
+

@@ -1,0 +1,55 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-aeropuerto-dev-182429-authRole",
+      "UnauthRoleArn": "arn:aws:iam::868957307331:role/amplify-aeropuerto-dev-182429-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::868957307331:role/amplify-aeropuerto-dev-182429-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-aeropuerto-dev-182429-deployment",
+      "UnauthRoleName": "amplify-aeropuerto-dev-182429-unauthRole",
+      "StackName": "amplify-aeropuerto-dev-182429",
+      "StackId": "arn:aws:cloudformation:us-east-1:868957307331:stack/amplify-aeropuerto-dev-182429/b8c426d0-d577-11ec-9e22-0a754c02b14f",
+      "AmplifyAppId": "d2b1ga2tm2xl24"
+    }
+  },
+  "auth": {
+    "aeropuertoc139eab2": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "output": {
+        "UserPoolId": "us-east-1_1YxqGFRfe",
+        "AppClientIDWeb": "2s3fqpvsraqhuc047f52k5el3l",
+        "AppClientID": "65d3nn3l3tvudkqepjcjsls8r7",
+        "IdentityPoolId": "us-east-1:ba6fabf0-5170-441f-afc2-67011907ffaf",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:868957307331:userpool/us-east-1_1YxqGFRfe",
+        "IdentityPoolName": "aeropuertoc139eab2_identitypool_c139eab2__dev",
+        "UserPoolName": "aeropuertoc139eab2_userpool_c139eab2"
+      },
+      "lastPushTimeStamp": "2022-05-17T04:57:31.451Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-aeropuerto-dev-182429-deployment/amplify-cfn-templates/auth/aeropuertoc139eab2-cloudformation-template.json",
+        "logicalId": "authaeropuertoc139eab2"
+      }
+    }
+  }
+}

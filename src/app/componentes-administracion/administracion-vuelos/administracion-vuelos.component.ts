@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Servicios } from 'src/app/componentes-comunes/services/servicios.service';
 import Swal from 'sweetalert2';
-import { sortAndDeduplicateDiagnostics } from 'typescript/lib/tsserverlibrary';
 
 @Component({
   selector: 'app-administracion-vuelos',
@@ -23,6 +22,9 @@ export class AdministracionVuelosComponent implements OnInit {
   origenes: any;
   estados: any;
   actualizar: boolean = false;
+  roles: any;
+  loaded: boolean = false;
+  msg = '';
 
   headerColumnNames: string[] = ['numeroVuelo', 'horaSalida', 'origen', 'horaLlegada', 'destino', 'avion', 'puerta', 'escala', 'estado', 'acciones'];
   dataSource = new MatTableDataSource();
@@ -49,10 +51,17 @@ export class AdministracionVuelosComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.obtenerVuelos();
+    this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
+    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Admin') {
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+      this.loaded = true;
+    }else{
+      this.loaded = false;
+      this.obtenerVuelos();
+    }
   }
 
-  async obtenerVuelos()  {
+  async obtenerVuelos() {
     this.spinner.show();
     //catalogo para moestrar datos
     this.services.getData<any[]>(this.services.BASE_URL_AEROPUERTO, 'vuelo/obtener/todas').toPromise().then(async res => {
@@ -168,7 +177,7 @@ export class AdministracionVuelosComponent implements OnInit {
 
   }
 
-  async actualizarVuelo (vuelo: any) {
+  async actualizarVuelo(vuelo: any) {
     this.vuelo = vuelo;
     this.actualizar = true;
     //variables linea 39

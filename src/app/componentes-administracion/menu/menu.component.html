@@ -1,0 +1,21 @@
+
+<div *ngIf="loaded">
+  <app-error [title]="'Sistema de Aeropuerto'" [msg]="msg"></app-error>
+</div>
+<mat-card *ngIf="this.obtenerRol2?.BASE_ROL != ''">
+  <button mat-raised-button type="button" color="warn"  (click)="cerraSesion()" class="d-block mr-0 ml-auto">
+  Cerrar Sesión
+</button>
+    <mat-card-title>Aeropuerto</mat-card-title>
+    <mat-card-actions>
+      <mat-button-toggle-group name="opciones">
+        <mat-button-toggle *ngIf="obtenerRol2?.BASE_ROL == rolC" value="ticket" [routerLink]="['/crear-boleto']">Crear Boleto</mat-button-toggle>
+        <mat-button-toggle *ngIf="obtenerRol2?.BASE_ROL == rolC" value="ticket" [routerLink]="['/consulta-boleto']">Consulta Boleto</mat-button-toggle>
+        <mat-button-toggle  *ngIf="obtenerRol2?.BASE_ROL == rolA"  value="vuelo" [routerLink]="['/administracion-vuelos']">Vuelos</mat-button-toggle>
+        <mat-button-toggle  *ngIf="obtenerRol2?.BASE_ROL ==  rolA" value="aerolineas" [routerLink]="['/administracion-aerolineas']" >Aerolineas</mat-button-toggle>
+        <mat-button-toggle  *ngIf="obtenerRol2?.BASE_ROL ==  rolA" value="aviones" [routerLink]="['/administracion-aviones']" >Aviones</mat-button-toggle>
+        <mat-button-toggle  *ngIf="obtenerRol2?.BASE_ROL ==  rolA" value="empleados" [routerLink]="['/administracion-empleados']">Empleados</mat-button-toggle>
+        <mat-button-toggle *ngIf="obtenerRol2?.BASE_ROL == rolA" value="revisor" [routerLink]="['/revisar-boleto']">Revisor</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-card-actions>
+  </mat-card>

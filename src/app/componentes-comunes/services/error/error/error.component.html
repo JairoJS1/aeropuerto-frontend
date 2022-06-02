@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row centrar">
+        <div class="col-md-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-blue-sat card-header-icon">
+              <div class="card-icon mat-elevation-z8">
+                <i class="material-icons">error</i>
+              </div>
+              <h2 class="card-title text-left">{{ title | uppercase }}</h2>
+            </div>
+            <div class="card-body">
+              <h3 class="text-center">{{ msg ? msg : 'Ocurrió un error al cargar la información solicitada' }}</h3>
+              <div class="row d-flex justify-content-between m-2">
+                <button mat-raised-button type="button" color="primary" class="btn-container btn-add"
+                  (click)="regresar()">
+                  <mat-icon>arrow_back</mat-icon>
+                  Regresar
+                </button>
+                <button mat-raised-button type="button" color="primary" class="btn-container btn-add" (click)="reload()">
+                  <mat-icon>autorenew</mat-icon>
+                  Recargar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

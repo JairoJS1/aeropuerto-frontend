@@ -1,0 +1,52 @@
+<div>
+    <mat-card class=" login-box">
+        <img src="/./assets/img/logoJD.jpeg" class="avatar" alt="Avatar Image">
+        <div class="modal-header">
+            <h2 class="modal-title">Login</h2>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="ingreso">
+                <div class="col-sm-12">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput type="text" autocomplete="off" maxlength="50" id="user" name="user"
+                            formControlName="user" required>
+                        <mat-error *ngIf="ingreso.get('user').hasError('required')">
+                            El usuario es <strong>obligatorio.</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="col-sm-12">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" id="contra" name="contra"
+                            formControlName="contra" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="ingreso.get('contra').hasError('required')">
+                            La Contraseña es <strong>obligatoria.</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer ">
+            <button mat-raised-button type="button" color="primary" class="boton" style="margin: 7px !important;"
+                (click)="login()" [disabled]="ingreso.invalid">
+                Ingresar
+            </button>
+            <div style="margin: 10px;">
+                <h5>
+                    <h6></h6>
+                    ¿ No tienes cuenta ? <a href="/sign-up">Registrate con Nosotros !</a>
+                </h5>
+            </div>
+        </div>
+
+    </mat-card>
+
+</div>
