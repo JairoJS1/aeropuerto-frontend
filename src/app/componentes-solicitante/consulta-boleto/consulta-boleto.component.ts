@@ -30,8 +30,10 @@ export class ConsultaBoletoComponent implements OnInit {
 
   ngOnInit() {
     this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
-    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Cliente') {
-      
+    if(this.roles == null){
+      this.loaded = true;
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+    }else if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Cliente') {  
       this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
       this.loaded = true;
     }

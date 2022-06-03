@@ -50,14 +50,8 @@ export class LoginComponent implements OnInit {
       var nombre = user.attributes.name;
       var rol1 = user.attributes;
       var atributos = user.attributes;
-      console.log(token);
-      console.log(nombre);
-      console.log(atributos);
-      console.log(rol1);
       if (token != null) {
         console.log('Auntenticacion con Exito');
-        //codigo a ejecutar si funciona 
-        console.log(user.attributes.nickname);
         this.roles = user.attributes.nickname;
         Swal.fire({
           titleText: `Bienvenido ` + nombre,
