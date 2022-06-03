@@ -24,7 +24,10 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerRol2 = (JSON.parse(localStorage.getItem('formDataFilter')));
-    if (this.obtenerRol2.BASE_ROL == '') {
+    if(this.obtenerRol2 == null){
+      this.loaded = true;
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+    }else if (this.obtenerRol2.BASE_ROL == '') {
       this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
       this.loaded = true;
     }

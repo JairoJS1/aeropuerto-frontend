@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
+import { Servicios } from '../componentes-comunes/services/servicios.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,8 @@ export class SignUpComponent implements OnInit {
   hide = true;
   registro: FormGroup;
 
-  constructor(private router: Router,
+  constructor(private services: Servicios,
+    private router: Router,
     private _formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,) {
     this.registro = this._formBuilder.group({
@@ -43,7 +45,7 @@ export class SignUpComponent implements OnInit {
           nickname: "Cliente" //rol para Clientes
         }
       });
-      console.log({ user });
+    //  console.log({ user });
       console.log('Cuenta creado con Exito');
       //codigo a ejecutar si funciona 
       Swal.fire({
@@ -52,6 +54,7 @@ export class SignUpComponent implements OnInit {
         showCloseButton: true,
         showConfirmButton: false
       });
+      this.services.forcedNavigate(['/login']);
       this.spinner.hide();
     } catch (error) {
       console.log(error);

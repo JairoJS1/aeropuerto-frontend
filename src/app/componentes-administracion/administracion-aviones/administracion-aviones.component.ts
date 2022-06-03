@@ -50,7 +50,10 @@ export class AdministracionAvionesComponent implements OnInit {
 
   async ngOnInit() {
     this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
-    if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Admin') {
+    if(this.roles == null){
+      this.loaded = true;
+      this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
+    }else if (this.roles.BASE_ROL == '' || this.roles.BASE_ROL != 'Admin') {
       this.msg = 'Usted no cuenta con los permisos necesarios para acceder al Sistema.';
       this.loaded = true;
     }else{
